@@ -1,0 +1,35 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Badge Maker"
+msgstr ""
+
+msgid "Texture"
+msgstr ""
+
+msgid "A badge texture."
+msgstr ""
+
+msgid "Size"
+msgstr ""
+
+msgid "A diameter of the badge measured by centimeters."
+msgstr ""
+
+msgid "Reset"
+msgstr ""
+
+msgid "Reset the size of the badge."
+msgstr ""
+
+msgid "Create"
+msgstr ""
+
+msgid "Create a new badge."
+msgstr ""
+
+msgid "Save badge"
+msgstr ""

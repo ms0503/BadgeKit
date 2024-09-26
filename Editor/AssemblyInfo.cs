@@ -1,0 +1,3 @@
+using UnityEditor;
+
+[assembly: Localization]

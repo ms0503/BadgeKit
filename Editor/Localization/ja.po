@@ -1,0 +1,36 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ja\n"
+
+msgid "Badge Maker"
+msgstr "バッジメーカー"
+
+msgid "Texture"
+msgstr "テクスチャ"
+
+msgid "A badge texture."
+msgstr "バッジのテクスチャ。"
+
+msgid "Size"
+msgstr "サイズ"
+
+msgid "A diameter of the badge measured by centimeters."
+msgstr "バッジの直径。(cm)"
+
+msgid "Reset"
+msgstr "リセット"
+
+msgid "Reset the size of the badge."
+msgstr "バッジのサイズをリセットします。"
+
+msgid "Create"
+msgstr "作成"
+
+msgid "Create a new badge."
+msgstr "新しいバッジを作成します。"
+
+msgid "Save badge"
+msgstr "バッジを保存"

@@ -1,0 +1,14 @@
+{
+    "author": {
+        "email": "mihal1073@outlook.com",
+        "name": "mihal1073",
+        "url": "https://ms0503.github.io"
+    },
+    "description": "A simple toolkit to create an original pin badge",
+    "displayName": "Badge Kit",
+    "name": "ms.sora.badge-kit",
+    "repo": "https://ms0503.github.io/vpm.json",
+    "unity": "2022.3",
+    "url": "https://github.com/ms0503/BadgeKit",
+    "version": "1.0.0"
+}

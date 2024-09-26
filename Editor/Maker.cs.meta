@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 213eef9cd7c7415cb4b5d602d0e21d47
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - m_ViewDataDictionary: {instanceID: 0}
+  - badgePrefab: {fileID: 5442959735857706611, guid: 31b1ba18f6fa2cfe7bb32e0a5d112d2c,
+      type: 3}
+  - badgePrefabForQuest: {fileID: 8952116116955921751, guid: 33b293690b9de3bf18c033ed9d1b0dda,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
