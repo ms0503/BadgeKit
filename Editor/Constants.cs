@@ -1,7 +1,7 @@
 namespace BadgeKit.Editor {
     public static class Constants {
         public const string NAME = "Badge Kit";
-        public const string VERSION = "1.1.0";
+        public const string VERSION = "1.1.1";
         public const string MENU_ROOT = "Tools/" + NAME;
         public const string MENU_MAKER = MENU_ROOT + "/Badge Maker";
         public const string MENU_VERSION = MENU_ROOT + "/Version: " + VERSION;
