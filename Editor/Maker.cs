@@ -4,17 +4,19 @@ using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Button = UnityEngine.UIElements.Button;
-using Random = System.Random;
 
 namespace BadgeKit.Editor {
     internal sealed class Maker : EditorWindow {
+        private const float _DEFAULT_BADGE_SIZE = 5.0f;
+
         [SerializeField]
         private GameObject badgePrefab;
 
         [SerializeField]
-        private GameObject badgePrefabForQuest;
+        private GameObject badgePrefabForQuestMat;
 
-        private readonly float _defaultBadgeSize = 5.0f;
+        [SerializeField]
+        private GameObject badgePrefabForQuestToon;
 
         private delegate void SizeValueChanged(float newValue);
 
@@ -32,6 +34,9 @@ namespace BadgeKit.Editor {
             }
             if(!Directory.Exists(Constants.MATERIALS_PATH)) {
                 Directory.CreateDirectory(Constants.MATERIALS_PATH);
+            }
+            if(!Directory.Exists(Constants.TEXTURES_PATH)) {
+                Directory.CreateDirectory(Constants.TEXTURES_PATH);
             }
             var title = new Label(L10n.Tr("Badge Maker")) {
                 style = {
@@ -82,39 +87,58 @@ namespace BadgeKit.Editor {
             };
             sizeSlider.RegisterValueChangedCallback(e => { this.Size = e.newValue; });
             sizeTextBox.RegisterValueChangedCallback(e => { this.Size = e.newValue; });
-            sizeReset.RegisterCallback<ClickEvent>(_ => { this.Size = this._defaultBadgeSize; });
+            sizeReset.RegisterCallback<ClickEvent>(_ => { this.Size = _DEFAULT_BADGE_SIZE; });
             create.RegisterCallback<ClickEvent>(_ => {
                 var path = EditorUtility.SaveFilePanelInProject(L10n.Tr("Save badge"), "Badge", "prefab", "",
                     Constants.ASSETS_PATH);
                 if(path == "") {
                     return;
                 }
-                var questPath = $"{path[..^7]}(Quest).prefab";
+                var questMatPath =
+                    $"{Path.GetDirectoryName(path)}/{Path.GetFileNameWithoutExtension(path)}(QuestMat).prefab";
+                var questToonPath =
+                    $"{Path.GetDirectoryName(path)}/{Path.GetFileNameWithoutExtension(path)}(QuestToon).prefab";
                 var prefabPath = AssetDatabase.GetAssetPath(this.badgePrefab);
-                var prefabQuestPath = AssetDatabase.GetAssetPath(this.badgePrefabForQuest);
+                var prefabQuestMatPath = AssetDatabase.GetAssetPath(this.badgePrefabForQuestMat);
+                var prefabQuestToonPath = AssetDatabase.GetAssetPath(this.badgePrefabForQuestToon);
                 AssetDatabase.CopyAsset(prefabPath, path);
-                AssetDatabase.CopyAsset(prefabQuestPath, questPath);
+                AssetDatabase.CopyAsset(prefabQuestMatPath, questMatPath);
+                AssetDatabase.CopyAsset(prefabQuestToonPath, questToonPath);
                 var obj = AssetDatabase.LoadAssetAtPath<GameObject>(path);
-                var questObj = AssetDatabase.LoadAssetAtPath<GameObject>(questPath);
+                var questMatObj = AssetDatabase.LoadAssetAtPath<GameObject>(questMatPath);
+                var questToonObj = AssetDatabase.LoadAssetAtPath<GameObject>(questToonPath);
                 var badge = obj.transform.Find("Badge");
-                var questBadge = questObj.transform.Find("Badge");
+                var questMatBadge = questMatObj.transform.Find("Badge");
+                var questToonBadge = questToonObj.transform.Find("Badge");
                 var badgeRenderer = badge.gameObject.GetComponent<MeshRenderer>();
-                var questBadgeRenderer = questBadge.gameObject.GetComponent<MeshRenderer>();
-                var rand = new Random();
-                var badgeMaterialPath = $"{Constants.MATERIALS_PATH}/{(uint)rand.Next(-0x80000000, 0x7fffffff):x8}.mat";
-                var questBadgeMaterialPath =
-                    $"{Constants.MATERIALS_PATH}/{(uint)rand.Next(-0x80000000, 0x7fffffff):x8}.mat";
+                var questMatBadgeRenderer = questMatBadge.gameObject.GetComponent<MeshRenderer>();
+                var questToonBadgeRenderer = questToonBadge.gameObject.GetComponent<MeshRenderer>();
+                var badgeMaterialPath = $"{Constants.MATERIALS_PATH}/{Path.GetFileNameWithoutExtension(path)}.mat";
+                var questMatBadgeMaterialPath =
+                    $"{Constants.MATERIALS_PATH}/{Path.GetFileNameWithoutExtension(questMatPath)}.mat";
+                var questToonBadgeMaterialPath =
+                    $"{Constants.MATERIALS_PATH}/{Path.GetFileNameWithoutExtension(questToonPath)}.mat";
+                var textureSrcPath = AssetDatabase.GetAssetPath(texture.value);
+                var textureDestPath =
+                    $"{Constants.TEXTURES_PATH}/{Path.GetFileNameWithoutExtension(path)}.{Path.GetExtension(textureSrcPath)}";
                 AssetDatabase.CopyAsset(AssetDatabase.GetAssetPath(badgeRenderer.sharedMaterial), badgeMaterialPath);
-                AssetDatabase.CopyAsset(AssetDatabase.GetAssetPath(questBadgeRenderer.sharedMaterial),
-                    questBadgeMaterialPath);
+                AssetDatabase.CopyAsset(AssetDatabase.GetAssetPath(questMatBadgeRenderer.sharedMaterial),
+                    questMatBadgeMaterialPath);
+                AssetDatabase.CopyAsset(AssetDatabase.GetAssetPath(questToonBadgeRenderer.sharedMaterial),
+                    questToonBadgeMaterialPath);
+                AssetDatabase.CopyAsset(textureSrcPath, textureDestPath);
                 var badgeMaterial = AssetDatabase.LoadAssetAtPath<Material>(badgeMaterialPath);
-                var questBadgeMaterial = AssetDatabase.LoadAssetAtPath<Material>(questBadgeMaterialPath);
-                badgeMaterial.mainTexture = (Texture)texture.value;
-                questBadgeMaterial.mainTexture = (Texture)texture.value;
+                var questMatBadgeMaterial = AssetDatabase.LoadAssetAtPath<Material>(questMatBadgeMaterialPath);
+                var questToonBadgeMaterial = AssetDatabase.LoadAssetAtPath<Material>(questToonBadgeMaterialPath);
+                var badgeTexture = AssetDatabase.LoadAssetAtPath<Texture>(textureDestPath);
+                badgeMaterial.mainTexture = badgeTexture;
+                questMatBadgeMaterial.mainTexture = badgeTexture;
+                questToonBadgeMaterial.mainTexture = badgeTexture;
                 badgeRenderer.sharedMaterial = badgeMaterial;
-                questBadgeRenderer.sharedMaterial = questBadgeMaterial;
+                questMatBadgeRenderer.sharedMaterial = questMatBadgeMaterial;
+                questToonBadgeRenderer.sharedMaterial = questToonBadgeMaterial;
             });
-            this.Size = this._defaultBadgeSize;
+            this.Size = _DEFAULT_BADGE_SIZE;
             sizeContainer.Add(sizeSlider);
             sizeContainer.Add(sizeTextBox);
             sizeContainer.Add(sizeReset);
