@@ -18,11 +18,14 @@ namespace BadgeKit.Editor {
         [SerializeField]
         private GameObject badgePrefabForQuestToon;
 
+        private float _size;
+
         private delegate void SizeValueChanged(float newValue);
 
         private event SizeValueChanged OnSizeValueChanged;
 
         private float Size {
+            get { return this._size; }
             set { this.OnSizeValueChanged?.Invoke(value); }
         }
 
@@ -110,6 +113,9 @@ namespace BadgeKit.Editor {
                 var badge = obj.transform.Find("Badge");
                 var questMatBadge = questMatObj.transform.Find("Badge");
                 var questToonBadge = questToonObj.transform.Find("Badge");
+                badge.localScale = new Vector3(this.Size / 5.0f, this.Size / 5.0f, this.Size / 5.0f);
+                questMatBadge.localScale = new Vector3(this.Size / 5.0f, this.Size / 5.0f, this.Size / 5.0f);
+                questToonBadge.localScale = new Vector3(this.Size / 5.0f, this.Size / 5.0f, this.Size / 5.0f);
                 var badgeRenderer = badge.gameObject.GetComponent<MeshRenderer>();
                 var questMatBadgeRenderer = questMatBadge.gameObject.GetComponent<MeshRenderer>();
                 var questToonBadgeRenderer = questToonBadge.gameObject.GetComponent<MeshRenderer>();
