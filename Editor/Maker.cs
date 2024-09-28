@@ -120,7 +120,7 @@ namespace BadgeKit.Editor {
                     $"{Constants.MATERIALS_PATH}/{Path.GetFileNameWithoutExtension(questToonPath)}.mat";
                 var textureSrcPath = AssetDatabase.GetAssetPath(texture.value);
                 var textureDestPath =
-                    $"{Constants.TEXTURES_PATH}/{Path.GetFileNameWithoutExtension(path)}.{Path.GetExtension(textureSrcPath)}";
+                    $"{Constants.TEXTURES_PATH}/{Path.GetFileNameWithoutExtension(path)}{Path.GetExtension(textureSrcPath)}";
                 AssetDatabase.CopyAsset(AssetDatabase.GetAssetPath(badgeRenderer.sharedMaterial), badgeMaterialPath);
                 AssetDatabase.CopyAsset(AssetDatabase.GetAssetPath(questMatBadgeRenderer.sharedMaterial),
                     questMatBadgeMaterialPath);

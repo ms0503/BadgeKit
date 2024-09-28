@@ -1,12 +1,8 @@
 {
-    "name": "BadgeKit.Editor",
-    "rootNamespace": "BadgeKit.Editor",
-    "references": [
-        "BadgeKit"
-    ],
-    "includePlatforms": [
-        "Editor"
-    ],
+    "name": "BadgeKit",
+    "rootNamespace": "BadgeKit",
+    "references": [],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

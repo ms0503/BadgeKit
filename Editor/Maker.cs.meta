@@ -7,9 +7,9 @@ MonoImporter:
   - m_ViewDataDictionary: {instanceID: 0}
   - badgePrefab: {fileID: 5442959735857706611, guid: 31b1ba18f6fa2cfe7bb32e0a5d112d2c,
       type: 3}
-  - badgePrefabForQuestMat: {fileID: 8952116116955921751, guid: 33b293690b9de3bf18c033ed9d1b0dda,
+  - badgePrefabForQuestMat: {fileID: 3566252658504873441, guid: 8f74a2fa64548d054979ebfb378781a7,
       type: 3}
-  - badgePrefabForQuestToon: {fileID: 2721577255005830484, guid: e2924d17843d94ec0810990712bbdb40,
+  - badgePrefabForQuestToon: {fileID: 3022096663884734031, guid: e2924d17843d94ec0810990712bbdb40,
       type: 3}
   executionOrder: 0
   icon: {instanceID: 0}

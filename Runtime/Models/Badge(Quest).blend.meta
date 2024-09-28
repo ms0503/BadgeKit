@@ -1,19 +1,9 @@
 fileFormatVersion: 2
-guid: b7adf07fb5ec79e2d8cb786bf360b2c8
+guid: dfd8ab5a21007590091bbc957a9b6ac3
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Badge
-    second: {fileID: 2100000, guid: 372351da796e870509697e45adf4dce8, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Pin
-    second: {fileID: 2100000, guid: 150fe70d991a829649840950806369d8, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -103,7 +93,7 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 1
+    hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1

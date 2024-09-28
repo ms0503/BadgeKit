@@ -1,7 +1,10 @@
+using JetBrains.Annotations;
+
 namespace BadgeKit.Editor {
+    [PublicAPI]
     public static class Constants {
-        public const string NAME = "Badge Kit";
-        public const string VERSION = "1.1.1";
+        public const string NAME = BadgeKit.Constants.NAME;
+        public const string VERSION = BadgeKit.Constants.VERSION;
         public const string MENU_ROOT = "Tools/" + NAME;
         public const string MENU_MAKER = MENU_ROOT + "/Badge Maker";
         public const string MENU_VERSION = MENU_ROOT + "/Version: " + VERSION;

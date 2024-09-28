@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b7adf07fb5ec79e2d8cb786bf360b2c8
+guid: 3436fecafde15d678b3faf3bd28a0086
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -8,12 +8,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Badge
-    second: {fileID: 2100000, guid: 372351da796e870509697e45adf4dce8, type: 2}
+    second: {fileID: 2100000, guid: 9c5c51b2ae1707f77baff1e3d1814f3d, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Pin
-    second: {fileID: 2100000, guid: 150fe70d991a829649840950806369d8, type: 2}
+    second: {fileID: 2100000, guid: afcc907a52abc5d89affb20a80a7391b, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
