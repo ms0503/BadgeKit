@@ -26,7 +26,10 @@ namespace BadgeKit.Editor {
 
         private float Size {
             get { return this._size; }
-            set { this.OnSizeValueChanged?.Invoke(value); }
+            set {
+                this._size = value;
+                this.OnSizeValueChanged?.Invoke(value);
+            }
         }
 
         private void CreateGUI() {
@@ -104,18 +107,15 @@ namespace BadgeKit.Editor {
                 var prefabPath = AssetDatabase.GetAssetPath(this.badgePrefab);
                 var prefabQuestMatPath = AssetDatabase.GetAssetPath(this.badgePrefabForQuestMat);
                 var prefabQuestToonPath = AssetDatabase.GetAssetPath(this.badgePrefabForQuestToon);
-                AssetDatabase.CopyAsset(prefabPath, path);
-                AssetDatabase.CopyAsset(prefabQuestMatPath, questMatPath);
-                AssetDatabase.CopyAsset(prefabQuestToonPath, questToonPath);
-                var obj = AssetDatabase.LoadAssetAtPath<GameObject>(path);
-                var questMatObj = AssetDatabase.LoadAssetAtPath<GameObject>(questMatPath);
-                var questToonObj = AssetDatabase.LoadAssetAtPath<GameObject>(questToonPath);
+                var obj = PrefabUtility.LoadPrefabContents(prefabPath);
+                var questMatObj = PrefabUtility.LoadPrefabContents(prefabQuestMatPath);
+                var questToonObj = PrefabUtility.LoadPrefabContents(prefabQuestToonPath);
                 var badge = obj.transform.Find("Badge");
                 var questMatBadge = questMatObj.transform.Find("Badge");
                 var questToonBadge = questToonObj.transform.Find("Badge");
-                badge.localScale = new Vector3(this.Size / 5.0f, this.Size / 5.0f, this.Size / 5.0f);
-                questMatBadge.localScale = new Vector3(this.Size / 5.0f, this.Size / 5.0f, this.Size / 5.0f);
-                questToonBadge.localScale = new Vector3(this.Size / 5.0f, this.Size / 5.0f, this.Size / 5.0f);
+                obj.transform.localScale = new Vector3(this.Size / 5.0f, this.Size / 5.0f, this.Size / 5.0f);
+                questMatObj.transform.localScale = new Vector3(this.Size / 5.0f, this.Size / 5.0f, this.Size / 5.0f);
+                questToonObj.transform.localScale = new Vector3(this.Size / 5.0f, this.Size / 5.0f, this.Size / 5.0f);
                 var badgeRenderer = badge.gameObject.GetComponent<MeshRenderer>();
                 var questMatBadgeRenderer = questMatBadge.gameObject.GetComponent<MeshRenderer>();
                 var questToonBadgeRenderer = questToonBadge.gameObject.GetComponent<MeshRenderer>();
@@ -143,6 +143,12 @@ namespace BadgeKit.Editor {
                 badgeRenderer.sharedMaterial = badgeMaterial;
                 questMatBadgeRenderer.sharedMaterial = questMatBadgeMaterial;
                 questToonBadgeRenderer.sharedMaterial = questToonBadgeMaterial;
+                PrefabUtility.SaveAsPrefabAsset(obj, path);
+                PrefabUtility.UnloadPrefabContents(obj);
+                PrefabUtility.SaveAsPrefabAsset(questMatObj, questMatPath);
+                PrefabUtility.UnloadPrefabContents(questMatObj);
+                PrefabUtility.SaveAsPrefabAsset(questToonObj, questToonPath);
+                PrefabUtility.UnloadPrefabContents(questToonObj);
             });
             this.Size = _DEFAULT_BADGE_SIZE;
             sizeContainer.Add(sizeSlider);

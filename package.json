@@ -10,7 +10,7 @@
     "repo": "https://ms0503.github.io/vpm.json",
     "unity": "2022.3",
     "url": "https://github.com/ms0503/BadgeKit",
-    "version": "2.1.0",
+    "version": "2.1.1",
     "vpmDependencies": {
         "jp.lilxyzw.liltoon": ">=1.3.7"
     }
